@@ -177,14 +177,24 @@ export const ContactSection = () => {
                 <label htmlFor="mobile" className="block text-sm font-medium mb-2 text-left">
                   Mobile
                 </label>
-                <input
-                  type="tel"
-                  id="mobile"
-                  name="mobile"
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
-                  placeholder="+91 7983789849"
-                />
+            <div className="flex items-center">
+  <span className="h-12 px-4 flex items-center border border-r-0 rounded-l-md bg-muted text-sm text-muted-foreground">
+    +91
+  </span>
+  <input
+    type="tel"
+    id="mobile"
+    name="mobile"
+    required
+    pattern="[0-9]{10}"
+    maxLength={10}
+    title="Enter only 10 digits"
+    className="h-12 w-full px-4 py-2 rounded-r-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary"
+    placeholder="9876543210"
+  />
+</div>
+
+
               </div>
 
               <div>
