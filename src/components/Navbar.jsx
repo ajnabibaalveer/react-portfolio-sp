@@ -1,6 +1,7 @@
-import { cn } from "@/lib/utils";
+import { useState, useEffect } from "react";
+import { Link } from "react-scroll";
 import { Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils"; // If you're using a utility function like `classnames`
 
 const navItems = [
   { name: "Home", href: "#hero" },
@@ -16,12 +17,12 @@ export const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.screenY > 10);
+      setIsScrolled(window.scrollY > 20);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   return (
     <nav
       className={cn(
@@ -30,59 +31,68 @@ export const Navbar = () => {
       )}
     >
       <div className="container flex items-center justify-between">
-        <a
-          className="text-xl font-bold text-primary flex items-center"
-          href="#hero"
+        {/* Logo */}
+        <Link
+          to="hero"
+          smooth={true}
+          duration={500}
+          offset={-80}
+          className="text-xl font-bold text-primary flex items-center cursor-pointer"
         >
           <span className="relative z-10">
-            <span className="text-glow text-foreground"> Shivanand </span>
-            Portfolio
+            <span className="text-glow text-foreground">Shivanand</span> Portfolio
           </span>
-        </a>
+        </Link>
 
-        {/* desktop nav */}
+        {/* Desktop Nav */}
         <div className="hidden md:flex space-x-8">
           {navItems.map((item, key) => (
-            <a
+            <Link
               key={key}
-              href={item.href}
-              className="running-underline text-foreground/80 hover:text-primary transition-colors duration-300"
+              to={item.href.replace("#", "")}
+              smooth={true}
+              duration={500}
+              spy={true}
+              offset={-80}
+              activeClass="text-primary underline"
+              className="cursor-pointer text-foreground/80 hover:text-primary transition-colors duration-300"
             >
               {item.name}
-            </a>
+            </Link>
           ))}
         </div>
 
-        {/* mobile nav */}
-
+        {/* Mobile Toggle Button */}
         <button
           onClick={() => setIsMenuOpen((prev) => !prev)}
           className="md:hidden p-2 text-foreground z-50"
           aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
         >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}{" "}
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
+        {/* Mobile Nav Overlay */}
         <div
           className={cn(
-            "fixed inset-0 bg-background/95 backdroup-blur-md z-40 flex flex-col items-center justify-center",
-            "transition-all duration-300 md:hidden",
-            isMenuOpen
-              ? "opacity-100 pointer-events-auto"
-              : "opacity-0 pointer-events-none"
+            "fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center transition-all duration-300 md:hidden",
+            isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
           )}
         >
           <div className="flex flex-col space-y-8 text-xl">
             {navItems.map((item, key) => (
-
-              <a
+              <Link
                 key={key}
-                href={item.href}
+                to={item.href.replace("#", "")}
+                smooth={true}
+                duration={500}
+                spy={true}
+                offset={-80}
+                activeClass="text-primary underline"
                 onClick={() => setIsMenuOpen(false)}
-                className="running-underline text-foreground/80 hover:text-primary transition-colors duration-300"
+                className="cursor-pointer text-foreground/80 hover:text-primary transition-colors duration-300"
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
