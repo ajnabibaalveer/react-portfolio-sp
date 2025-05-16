@@ -3,25 +3,25 @@ import { cn } from "@/lib/utils";
 
 const skills = [
   // Frontend
-  { name: "HTML/HTML5", level: 95, category: "frontend" },
-  { name: "CSS/CSS3", level: 85, category: "frontend" },
-  { name: "JavaScript", level: 80, category: "frontend" },
-  { name: "React", level: 85, category: "frontend" },
-  { name: "Ag Grid", level: 95, category: "frontend" },
-  { name: "TypeScript", level: 35, category: "frontend" },
-  { name: "Bootstrap", level: 90, category: "frontend" },
-  { name: "JQuery", level: 80, category: "frontend" },
-  { name: "LESS/SASS", level: 70, category: "frontend" },
-  { name: "UI/UX", level: 85, category: "frontend" },
+  { image: "/skills/HTML.png", name: "HTML/HTML5", level: 95, category: "frontend" },
+  { image: "/skills/CCS.png", name: "CSS/CSS3", level: 85, category: "frontend" },
+  { image: "/skills/JavaScript-logo.png", name: "JavaScript", level: 80, category: "frontend" },
+  { image: "/skills/React.jpg", name: "React", level: 85, category: "frontend" },
+  { image: "/skills/Ag.jpg", name: "Ag Grid", level: 95, category: "frontend" },
+  { image: "/skills/Ts.png", name: "TypeScript", level: 35, category: "frontend" },
+  { image: "/skills/bootstrap.jpeg", name: "Bootstrap", level: 90, category: "frontend" },
+  { image: "/skills/jQuery.png", name: "JQuery", level: 80, category: "frontend" },
+  { image: "/skills/sass.jpg", name: "LESS/SASS", level: 70, category: "frontend" },
+  { image: "/skills/UIX.jpg", name: "UI/UX", level: 85, category: "frontend" },
 
-   // Tools
-  { name: "Basic PHP", level: 80, category: "backend" },
-  { name: "Basic Yii2", level: 70, category: "backend" },
+  // Backend
+  { image: "/skills/php.png", name: "Basic PHP", level: 80, category: "backend" },
+  { image: "/skills/yii2.png", name: "Basic Yii2", level: 70, category: "backend" },
 
   // Tools
-  { name: "Git/GitHub", level: 90, category: "tools" },
-  { name: "Figma", level: 70, category: "tools" },
-  { name: "VS Code", level: 95, category: "tools" },
+  { image: "/skills/git.png", name: "Git/GitHub", level: 90, category: "tools" },
+  { image: "/skills/figma.jpg", name: "Figma", level: 70, category: "tools" },
+  { image: "/skills/vs code.jpg", name: "VS Code", level: 95, category: "tools" },
 ];
 
 const categories = ["all", "frontend", "backend", "tools"];
@@ -33,7 +33,7 @@ export const SkillsSection = () => {
     (skill) => activeCategory === "all" || skill.category === activeCategory
   );
   return (
-    <section id="skills" className="py-24 px-4 relative bg-secondary/30">
+    <section id="skills" className="py-5 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
           My <span className="text-primary"> Skills</span>
@@ -56,30 +56,43 @@ export const SkillsSection = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {filteredSkills.map((skill, key) => (
             <div
               key={key}
-              className="bg-card p-6 rounded-lg shadow-xs card-hover"
+              className="bg-card p-4 rounded-lg shadow-xs flex md:flex-col items-center md:items-start card-hover"
             >
-              <div className="text-left mb-4">
-                <h3 className="font-semibold text-lg"> {skill.name}</h3>
-              </div>
-              <div className="w-full bg-secondary/50 h-2 rounded-full overflow-hidden">
-                <div
-                  className="bg-primary h-2 rounded-full origin-left animate-[grow_1.5s_ease-out]"
-                  style={{ width: skill.level + "%" }}
-                />
+              {/* Image (always visible) */}
+              <img
+                src={skill.image || "/skills/skills.jpg"}
+                alt={skill.name}
+                className="w-10 h-10 md:w-12 md:h-12 object-contain mr-4 md:mr-0 md:mb-3 rounded-md"
+              />
+
+              {/* Name (only on medium and up) */}
+              <div className="hidden md:block text-left mb-2">
+                <h3 className="font-semibold text-lg">{skill.name}</h3>
               </div>
 
-              <div className="text-right mt-1">
-                <span className="text-sm text-muted-foreground">
-                  {skill.level}%
-                </span>
+              {/* Progress bar & percentage (stacked on large, inline on small) */}
+              <div className="flex-1 w-full">
+                <div className="w-full bg-secondary/50 h-2 rounded-full overflow-hidden">
+                  <div
+                    className="bg-primary h-2 rounded-full origin-left animate-[grow_1.5s_ease-out]"
+                    style={{ width: `${skill.level}%` }}
+                  />
+                </div>
+                <div className="text-right mt-1">
+                  <span className="text-sm text-muted-foreground">
+                    {skill.level}%
+                  </span>
+                </div>
               </div>
             </div>
           ))}
         </div>
+
+
       </div>
     </section>
   );

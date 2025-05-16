@@ -7,7 +7,7 @@ import DisableDevTools from "./DisableDevTools";
 function App() {
   return (
     <>
-     <DisableDevTools />
+     {/* <DisableDevTools /> */}
       <Toaster />
       <BrowserRouter>
         <Routes>
