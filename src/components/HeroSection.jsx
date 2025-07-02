@@ -30,7 +30,7 @@ export const HeroSection = () => {
             </a>
 
             <a
-              href="/Shivanand_Resume.pdf" download
+              href="/Shivanand__CV.pdf" download
               className="cosmic-button-outline"
             >
               Download CV

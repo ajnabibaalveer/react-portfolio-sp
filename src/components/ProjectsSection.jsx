@@ -40,7 +40,7 @@ const projects = [
     githubUrl: "#",
   },
   {
-    id: 3,
+    id: 4,
     title: "Chandra Classes - Online tution plateform",
     description:
       "A Online and offline tution class for the kids and working professionals",
@@ -48,7 +48,18 @@ const projects = [
     tags: ["HTML", "CSS", "Bootstrap", "JS", "EmailJS"],
     demoUrl: "https://chandra-classes.vercel.app/",
     githubUrl: "#",
+  },
+  {
+    id: 5,
+    title: "Crypto Tracker & Converter",
+    description:
+      "A mobile-first React app that tracks top cryptocurrencies and lets users convert between them using real-time data from the CoinGecko API.",
+    image: "/projects/crypto.png",
+    tags: ["React", "Bootstrap", "Axios", "CoinGecko API", "Vite"],
+    demoUrl: "https://crypto-tracker-blond-alpha.vercel.app/",
+    githubUrl: "https://github.com/YOUR_USERNAME/crypto-tracker",
   }
+
 ];
 
 

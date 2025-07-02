@@ -40,7 +40,7 @@ export const Navbar = () => {
           className="text-xl font-bold text-primary flex items-center cursor-pointer"
         >
           <span className="relative z-10">
-            <span className="text-glow text-foreground">Shivanand</span> Portfolio
+           <span className="text-glow text-foreground">Shivanand</span> Portfolio
           </span>
         </Link>
 
